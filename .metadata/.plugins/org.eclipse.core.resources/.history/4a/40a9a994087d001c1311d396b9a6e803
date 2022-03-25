@@ -1,0 +1,31 @@
+package palautettavat4;
+
+import java.util.Scanner;
+
+public class Tunnus {
+	
+	public String teeTunnus(String etu, String suku) {
+		
+		etu = etu.substring(0, 3);
+		suku = suku.substring(0, 3);
+		String tunnus = suku + etu;
+		
+		return tunnus;
+	}
+
+	public static void main(String[] args) {
+		
+		Tunnus ohjelma = new Tunnus();
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Anna sukunimi: ");
+		String suku = input.nextLine().toLowerCase();
+		System.out.print("Anna etunimi: ");
+		String etu = input.nextLine().toLowerCase();
+		
+		String tunnus = ohjelma.teeTunnus(etu, suku);
+		System.out.println("Tunnus on " + tunnus);
+
+	}
+
+}

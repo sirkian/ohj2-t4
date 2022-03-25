@@ -1,0 +1,40 @@
+package taulukko;
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Etunimet {
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+
+		String[] nimet;
+		final int MAX = 20;
+		int lkm = 0;
+		
+		nimet = new String[MAX];
+
+		System.out.print("Anna nimi: ");
+		String nimi = input.nextLine();
+		
+		while (! nimi.matches("\\S") && lkm < MAX) {
+			nimet[lkm] = nimi;
+			lkm++;
+			
+			if (lkm < MAX) {
+				System.out.print("Anna nimi: ");
+				nimi = input.nextLine();
+				
+			} else {
+				System.out.println("Ei enempää nimiä pls.");
+			}
+		}
+		Arrays.sort(nimet, 0, lkm);
+		System.out.print("Nimet ovat aakosjärjestyksessä ");
+		
+		for (int i = 0; i < lkm; i++) {
+			System.out.print(nimet[i] + " ");
+		}
+	}
+}

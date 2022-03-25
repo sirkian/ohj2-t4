@@ -1,0 +1,33 @@
+package taulukko;
+
+import java.util.Scanner;
+
+public class Perjantaiarvonta {
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		final int MAX = 15;
+		int i = 0;
+		
+		String[] osallistujat = new String[MAX];
+		System.out.print("Anna osallistujan etunimi: ");
+		String nimi = input.nextLine();
+		
+		while (nimi.length() != 0 && i < MAX) {
+			osallistujat[i] = nimi;
+			i++;
+			
+			if (i < MAX) {
+				System.out.print("Anna osallistujan etunimi: ");
+				nimi = input.nextLine();
+				
+			} else {
+				System.out.println("No mas.");
+			}
+		}
+		int voittaja = (int)(Math.random() * i);
+		System.out.println("Voittja on " + osallistujat[voittaja]);
+	}
+
+}

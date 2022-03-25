@@ -1,0 +1,34 @@
+package palautettavat4;
+
+import java.util.Scanner;
+
+public class Dominion {
+	
+	public int laskePisteet(int kirous, int tila, int pitaja, int laani) {
+		
+		final int KIROUSPST = -1, TILAPST = 2, PITAJAPST = 3, LAANIPST = 6;
+		int pisteet = kirous*KIROUSPST + tila*TILAPST + pitaja*PITAJAPST + laani*LAANIPST;
+		
+		return pisteet;
+	}
+
+	public static void main(String[] args) {
+		
+		Dominion ohjelma = new Dominion();
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Anna kirouskorttien m‰‰r‰: ");
+		int kirous = input.nextInt();
+		System.out.print("Anna tilakorttien m‰‰r‰: ");
+		int tila = input.nextInt();
+		System.out.print("Anna pit‰j‰korttien m‰‰r‰: ");
+		int pitaja = input.nextInt();
+		System.out.print("Anna l‰‰nikorttien m‰‰r‰: ");
+		int laani = input.nextInt();
+		
+		int pisteet = ohjelma.laskePisteet(kirous, tila, pitaja, laani);
+		
+		System.out.println("Pisteiden yhteism‰‰r‰ on " + pisteet);
+	}
+
+}

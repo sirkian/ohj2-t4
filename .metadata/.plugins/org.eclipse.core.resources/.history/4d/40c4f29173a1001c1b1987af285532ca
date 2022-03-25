@@ -1,0 +1,33 @@
+package kertaus;
+
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class IIpaivamaara {
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		System.out.print("Anna laskun er‰p‰iv‰ muodossa (vvv-kk-pp): ");
+		
+		try {
+			String erapaivaStr = input.nextLine();
+			LocalDate tanaan = LocalDate.now();
+			LocalDate erapaiva = LocalDate.parse(erapaivaStr);
+			
+			if (erapaiva.isAfter(tanaan)) {
+				System.out.println("Laskua ei viel‰ tarvitse maksaa");
+			} else if (erapaiva.isBefore(tanaan)) {
+				System.out.println("Lasku olisi jo pit‰nyt maksaa");
+			} else {
+				System.out.println("Lasku pit‰‰ maksaa t‰n‰‰n");
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("Er‰p‰iv‰ ei ole kelvollinen");
+		}
+
+	}
+
+}

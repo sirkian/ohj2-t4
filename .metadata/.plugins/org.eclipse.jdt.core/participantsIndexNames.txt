@@ -1,0 +1,13 @@
+INDEX VERSION 1.131
+C:\Users\Anssi\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2822252344.index
+\Kommunikaatio\src\main\java
+C:\Users\Anssi\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\288920979.index
+\OmaEka\src\main\java
+C:\Users\Anssi\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\277066883.index
+\Tehtava3\src\main\java
+C:\Users\Anssi\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1543019815.index
+\Autot\src\main\java
+C:\Users\Anssi\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2025001041.index
+\Asiakkaat\src\main\java
+C:\Users\Anssi\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2276259917.index
+\Kommunikaatio\src\main\java

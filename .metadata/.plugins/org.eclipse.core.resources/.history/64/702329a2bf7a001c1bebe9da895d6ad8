@@ -1,0 +1,21 @@
+package taulukko;
+
+import java.util.Scanner;
+
+public class Kengannumero {
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		System.out.print("Anna kengännumerosi: ");
+		try {
+			int koko = input.nextInt();
+			System.out.println("Kengännumero on luku.");
+		} catch (Exception e) {
+			System.out.println("Kengännumero ei ole luku.");
+		}
+				
+
+	}
+
+}

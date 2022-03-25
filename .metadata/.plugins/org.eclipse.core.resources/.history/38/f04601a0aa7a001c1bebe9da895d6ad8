@@ -1,0 +1,33 @@
+package taulukko;
+
+import java.util.Scanner;
+
+public class Veriryhma {
+
+	public static void main(String[] args) {
+		
+		final int MAX = 1000;
+		int lkm = 0;
+		Scanner input = new Scanner(System.in);
+		String[] veriryhmat = new String[MAX]; 
+		
+		System.out.print("Anna veriryhmä (- lopettaa): ");
+		String ryhma = input.nextLine();
+		
+		while (lkm < MAX && ryhma.equals("-") == false) {
+			veriryhmat[lkm] = ryhma;
+			lkm++;
+			
+			if (lkm < MAX) {
+				System.out.println("Anna veriryhmä (- lopettaa): ");
+				ryhma = input.nextLine();
+				
+			} else {
+				System.out.println("Liika on liikaa");
+			}
+		}
+		System.out.println("Luovutuksia oli yhteensä " + lkm);
+
+	}
+
+}

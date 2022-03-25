@@ -1,0 +1,29 @@
+package taulukko;
+
+import java.util.Scanner;
+import java.time.LocalDate;
+
+public class Syntymapaiva1 {
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("Anna syntymäpäiväsi (vvvv-kk-pp): ");
+		String syntymapaiva = input.nextLine();
+		
+		LocalDate tanaan = LocalDate.now();
+		int nytvuosi = tanaan.getYear();
+		LocalDate paivamaara = LocalDate.parse(syntymapaiva); 
+		int vuosi = paivamaara.getYear();
+		int kk = paivamaara.getMonthValue();
+		int pv = paivamaara.getDayOfMonth();
+
+		if (vuosi > nytvuosi) {
+			System.out.println("Syntymävuosi ei voi olla tulevaisuudessa");
+			
+		} else {
+			System.out.println("Syntymävuosi on " + vuosi);
+		}
+	}
+
+}

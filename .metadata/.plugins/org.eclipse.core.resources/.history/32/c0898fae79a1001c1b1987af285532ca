@@ -1,0 +1,30 @@
+package kertaus;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class IIItoistorakenne {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		DecimalFormat desi = new DecimalFormat("0.00");
+		double saasto = 3000;
+		int vuosi = 0;
+				
+		System.out.print("Anna ilmal‰mpˆpumpun hinta: ");
+		int hinta = input.nextInt();
+		System.out.print("Anna s‰hkˆn hinta/kWh: ");
+		double kwhHinta = input.nextInt();
+		
+		saasto = saasto * (kwhHinta / 100);
+		
+		while (hinta > saastetty) {
+			vuosi++;
+			double saastetty = vuosi * saasto;
+			System.out.println(vuosi + ". s‰‰stetty " + desi.format(saastetty));
+		}
+		
+		System.out.println("Maksaminen kesti " + vuosi + " vuotta");
+	}
+
+}
