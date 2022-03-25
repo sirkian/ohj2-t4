@@ -41,6 +41,7 @@ public class Dao {
 				if (rs != null) {
 					while (rs.next()) {
 						Asiakas asiakas = new Asiakas();
+						asiakas.setAsiakas_id(rs.getInt(1));
 						asiakas.setEtunimi(rs.getString(2));
 						asiakas.setSukunimi(rs.getString(3));
 						asiakas.setPuhelin(rs.getString(4));
@@ -58,7 +59,7 @@ public class Dao {
 	
 	public ArrayList<Asiakas> listaaKaikki(String hakusana) {
 		ArrayList<Asiakas> asiakkaat = new ArrayList<Asiakas>();
-		sql = "SELECT * FROM asiakkaat WHERE etunimi LIKE ? or sukunimi LIKE ? or puhelin LIKE ? or sposti LIKE ?";
+		sql = "SELECT * FROM asiakkaat WHERE etunimi LIKE ? or sukunimi LIKE ? or sposti LIKE ?";
 		try {
 			con = yhdista();
 			if (con != null) {
@@ -66,11 +67,11 @@ public class Dao {
 				stmtPrep.setString(1, "%" + hakusana + "%");
 				stmtPrep.setString(2, "%" + hakusana + "%");
 				stmtPrep.setString(3, "%" + hakusana + "%");
-				stmtPrep.setString(4, "%" + hakusana + "%");
 				rs = stmtPrep.executeQuery();
 				if (rs != null) {
 					while (rs.next()) {
 						Asiakas asiakas = new Asiakas();
+						asiakas.setAsiakas_id(rs.getInt(1));
 						asiakas.setEtunimi(rs.getString(2));
 						asiakas.setSukunimi(rs.getString(3));
 						asiakas.setPuhelin(rs.getString(4));
