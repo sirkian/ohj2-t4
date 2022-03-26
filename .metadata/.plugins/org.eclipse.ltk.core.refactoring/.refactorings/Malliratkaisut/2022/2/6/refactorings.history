@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;TuoteMetodeilla.java&apos; to &apos;luokkaJaOlio.Suoritus.java&apos;&#x0D;&#x0A;- Original project: &apos;Malliratkaisut&apos;&#x0D;&#x0A;- Destination element: &apos;luokkaJaOlio.Suoritus.java&apos;&#x0D;&#x0A;- Original element: &apos;luokka.TuoteMetodeilla.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="=Oma harjoittelu/src&lt;luokkaJaOlio{Suoritus.java" element1="/src&lt;luokka{TuoteMetodeilla.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1644514611054" units="1" version="1.0"/>
-</session>

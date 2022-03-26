@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+body {
+	font-family: sans-serif;
+}
+table {
+	border-collapse: collapse;
+}
+.alignR {
+	text-align: right;
+}
+input[type="button"] {
+	padding: .1em .5em;
+}
+tr:nth-child(even) {
+	background-color: #d4d4d4;
+}
+tr:hover {
+	background-color: #d1d1d1;
+}
+th {
+	background-color: #21ad50;
+	text-align: left;
+	color: white;
+	padding: .7em;
+	border: 1px solid #dedede;
+}
+#uusiAsiakas, #takaisin {
+	cursor: pointer;
+}
+td {
+	padding: .7em;	
+	border: 1px solid #dedede;
+}
+.poista {
+	color: #9c4141;
+	cursor: pointer;
+	font-weight: bold;
+}
