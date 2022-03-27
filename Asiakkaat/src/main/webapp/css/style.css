@@ -24,8 +24,10 @@ th {
 	padding: .7em;
 	border: 1px solid #dedede;
 }
-#uusiAsiakas, #takaisin {
+#uusiAsiakas:hover, #takaisin:hover {
 	cursor: pointer;
+	text-decoration: underline 1.2px #f7f7f7;
+	color: #f7f7f7;
 }
 td {
 	padding: .7em;	
@@ -33,6 +35,10 @@ td {
 }
 .poista {
 	color: #9c4141;
-	cursor: pointer;
 	font-weight: bold;
+}
+.poista:hover {
+	cursor: pointer;
+	text-decoration: underline 1.2px #bd4d4d;
+	color: #bd4d4d;
 }
