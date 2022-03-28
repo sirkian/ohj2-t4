@@ -33,9 +33,17 @@ td {
 	padding: .7em;	
 	border: 1px solid #dedede;
 }
+table a, table a:visited {
+	text-decoration: none;
+	color: #3162a3;
+	
+}
+table a:hover {
+	text-decoration: underline 1.2px #3b76c4;
+	color: #3b76c4;
+}
 .poista {
-	color: #9c4141;
-	font-weight: bold;
+	color: #9c4141;	
 }
 .poista:hover {
 	cursor: pointer;
