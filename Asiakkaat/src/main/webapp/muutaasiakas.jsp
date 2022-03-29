@@ -5,17 +5,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <script src="scripts/main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <title>Muuta asiakkaan tietoja</title>
 </head>
-<body>
+<body onkeydown="tutkiKey(event)">
 <form id="lomake">
 	<table>
 		<thead>
 			<tr>
-				<th colspan="5" class="alignR"><span id="takaisin">Palaa takaisin</span></th>
+				<th colspan="3" id="ilmo"></th>
+				<th colspan="2" class="alignR"><a href="listaaasiakkaat.jsp" id="takaisin">Palaa takaisin</a></th>
 			</tr>
 			<tr>
 				<th>Etunimi</th>
@@ -31,7 +30,7 @@
 				<td><input type="text" name="sukunimi" id="sukunimi"></td>
 				<td><input type="text" name="puhelin" id="puhelin"></td>
 				<td><input type="text" name="sposti" id="sposti"></td>
-				<td><input type="submit" id="tallenna" value="Muuta"></td>
+				<td><input type="button" id="tallenna" value="Muuta" onclick="vieTiedot()"></td>
 			</tr>
 		</tbody>
 	</table>
@@ -40,77 +39,65 @@
 <span id="ilmo"></span>
 </body>
 <script>
-$(document).ready(function() {
-	
-	$("#takaisin").click(function() {
-		document.location="listaaasiakkaat.jsp";
+document.getElementById("etunimi").focus();
+
+const tutkiKey = (event) => {
+	if (event.keyCode == 13) {
+		vieTiedot();
+	}
+}
+
+var asiakas_id = requestURLParam("asiakas_id");
+fetch ("asiakkaat/haeyksi/" + asiakas_id, {method:'GET'})
+	.then (function (response) {
+		return response.json()
+	})
+	.then (function (responseJson) {
+		document.getElementById("etunimi").value = responseJson.etunimi;		
+		document.getElementById("sukunimi").value = responseJson.sukunimi;	
+		document.getElementById("puhelin").value = responseJson.puhelin;	
+		document.getElementById("sposti").value = responseJson.sposti;	
+		document.getElementById("asiakas_id").value = responseJson.asiakas_id;
 	});
+
+function vieTiedot() {
+	var ilmo = "";
+	if (document.getElementById("etunimi").value.length < 2) {
+		ilmo = "Etunimi on liian lyhyt";
+	} else if (document.getElementById("sukunimi").value.length < 2) {
+		ilmo = "Sukunimi on liian lyhyt";
+	} else if (document.getElementById("puhelin").value.length < 10 ||
+				document.getElementById("puhelin").value.length > 14) {
+		ilmo = "Puhelinnumero ei kelpaa";
+	} else if (document.getElementById("sposti").value.length < 5) {
+		ilmo = "Spostiosoite on liian lyhyt";
+	}
+	if (ilmo != "") {
+		document.getElementById("ilmo").innerHTML=ilmo;
+		setTimeout(function(){ document.getElementById("ilmo").innerHTML=""; }, 3000);
+		return;
+	}
+	document.getElementById("etunimi").value=siivoa(document.getElementById("etunimi").value);
+	document.getElementById("sukunimi").value=siivoa(document.getElementById("sukunimi").value);
+	document.getElementById("puhelin").value=siivoa(document.getElementById("puhelin").value);
+	document.getElementById("sposti").value=siivoa(document.getElementById("sposti").value);
 	
-	$("#etunimi").focus();
+	var formJsonStr = formDataToJSON(document.getElementById("lomake"));
 	
-	var asiakas_id = requestURLParam("asiakas_id");
-	$.ajax({url:"asiakkaat/haeyksi/"+asiakas_id, type:"GET", dataType:"json", success:function(result) {
-		$("#asiakas_id").val(result.asiakas_id);
-		$("#etunimi").val(result.etunimi);
-		$("#sukunimi").val(result.sukunimi);
-		$("#puhelin").val(result.puhelin);
-		$("#sposti").val(result.sposti);
-	}});
-	
-	$("#lomake").validate({
-		rules: {
-			etunimi: {
-				required: true,
-				minlength: 2
-			},
-			sukunimi: {
-				required: true,
-				minlength: 2
-			},
-			puhelin: {
-				required: true,
-				minlength: 10,
-				maxlength: 14
-			},
-			sposti: {
-				required: true,
-				email: true
+	fetch ("asiakkaat", {method:'PUT', body:formJsonStr})
+		.then (function (response) {
+			return response.json()
+		})
+		.then (function (responseJson) {
+			var vastaus = responseJson.response;
+			if (vastaus == 0) {
+				document.getElementById("ilmo").innerHTML= "Asiakastietojen muuttaminen epäonnistui";
+			} else if (vastaus == 1) {
+				document.getElementById("ilmo").innerHTML= "Asiakastietojen muuttaminen onnistui";
 			}
-		},
-		messages: {
-			etunimi: {
-				required: "Pakollinen tieto",
-				minlength: "Liian lyhyt nimi"
-			},
-			sukunimi: {
-				required: "Pakollinen tieto",
-				minlength: "Liian lyhyt nimi"
-			},
-			puhelin: {
-				required: "Pakollinen tieto",
-				minlength: "Liian lyhyt numero",
-				maxlength: "Liian pitkä numero"
-			},
-			sposti: {
-				required: "Pakollinen tieto",
-				email: "Virheellinen osoite"
-			}		
-		},
-		submitHandler: function(form) {
-			paivitaTiedot();
-		}	
-	});
-});
-function paivitaTiedot() {
-	var formJsonStr = formDataJsonStr($("#lomake").serializeArray());
-	$.ajax ({url:"asiakkaat", data:formJsonStr, type:"PUT", dataType:"json", success:function(result) {
-		if (result.response == 0) {
-			$("#ilmo").html("Asiakkaan päivittäminen epäonnistui");
-		} else if (result.response == 1) {
-			$("#ilmo").html("Asiakkaan päivittäminen onnistui");
-			$("#etunimi", "#sukunimi", "#puhelin", "#sposti").val("");
-		}
-	}});
+			setTimeout(function(){ document.getElementById("ilmo").innerHTML=""; }, 5000);
+		});
+	document.getElementById("lomake").reset();
 }
 </script>
 </html>

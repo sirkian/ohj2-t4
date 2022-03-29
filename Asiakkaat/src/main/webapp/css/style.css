@@ -2,6 +2,7 @@
 body {
 	font-family: sans-serif;
 }
+
 table {
 	border-collapse: collapse;
 }
@@ -24,8 +25,10 @@ th {
 	padding: .7em;
 	border: 1px solid #dedede;
 }
+#uusiAsiakas, #takaisin {
+	color: white;
+}
 #uusiAsiakas:hover, #takaisin:hover {
-	cursor: pointer;
 	text-decoration: underline 1.2px #f7f7f7;
 	color: #f7f7f7;
 }
